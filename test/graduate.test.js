@@ -39,7 +39,7 @@ describe(`Tests`, () => {
         expect(res.body).to.be.an('array');
     });
 
-    it('Test 2 - should get one graduate from database', async () => {
+   it('Test 2 - should get one graduate from database', async () => {
         const res = await chai.request(server)
             .get('/graduate/1')
             .send()
@@ -94,6 +94,58 @@ describe(`Tests`, () => {
         expect(getRes.body.gitHub).to.be.eql("davidWannsinnGithubEdited");
 
     });
+
+
+// ---------------------------------------
+    it('Test 5 - GET/ should find specific subdocument', async () => {
+        const getRes = await chai.request(server)
+            .get('/graduate/2/degrees')
+            .send(
+                {
+                    _id: '6303b9f3eb5681b1a15ebb8b'
+                }
+            )
+
+        //console.log(getRes.body)
+        // PUT request checks
+
+        // GET request checks
+        expect(getRes.status).to.be.eql(200)
+        expect(getRes.body._id).to.be.eql("6303b9f3eb5681b1a15ebb8b")
+    });
+
+
+
+    it('Test 6 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
+        const getRes = await chai.request(server)
+            .put('/graduate/2/degrees')
+            .send(
+                {
+                    university: 'MIT',
+                    degreeSubject: 'Physics',
+                    degreeLevel: "Bachelor's",
+                    grade: '1:1',
+                    fromDate: '2011',
+                    toDate: '2015',
+                    weight: 'XL',
+                    priority: '9',
+                    description: 'A physics degree',
+                    _id: '6303b9f3eb5681b1a15ebb8b'
+                }
+            )
+
+        //console.log("RES BODT" + getRes)
+        // PUT request checks
+
+        // GET request checks
+        expect(getRes.status).to.be.eql(200)
+        expect(getRes.body.degrees[0]._id).to.be.eql("6303b9f3eb5681b1a15ebb8b")
+        expect(getRes.body.degrees[0].university).to.be.eql("MIT")
+        
+        
+    });
+
+    
 })
 
 
