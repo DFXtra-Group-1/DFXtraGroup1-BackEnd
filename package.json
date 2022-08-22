@@ -8,7 +8,8 @@
     "test": "NODE_ENV=test mocha --timeout 10000 --exit",
     "start": "nodemon server.js",
     "startdev": "NODE_ENV=development nodemon server.js",
-    "start-win": "SET NODE_ENV=dev&& nodemon server.js"
+    "start-win": "SET NODE_ENV=dev&& nodemon server.js",
+    "testwin": "SET NODE_ENV=test&& mocha --timeout 10000 --exit"
   },
   "repository": {
     "type": "git",
@@ -22,12 +23,13 @@
   },
   "homepage": "https://github.com/DFXtra-Group-1/DFXtraGroup1-BackEnd#readme",
   "dependencies": {
-    "express": "^4.18.1",
-    "json-server": "^0.17.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "json-server": "^0.17.0",
     "mongoose": "^6.5.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19"

@@ -50,6 +50,22 @@ describe(`Tests`, () => {
         expect(res.body.digitalFuturesEmail).to.be.eql("davesinnwann@digitalfutures.com")
 
     });
+
+
+    it('Test 3 - should edit graduate data in the database', () => {
+        const res = await chai.request(server)
+            .post('/graduate/1')
+            .send({
+                "gitHub": "DavidWannSinnEdited",
+            })
+        expect(res).to.have.status(201);
+        expect(res.body.uuid).to.be.equal(1);
+        expect(res.body.gitHub).to.be.eql("DavidWannSinnEdited")
+
+    })
+
+
+
 })
 
 
