@@ -2,17 +2,6 @@ import express from 'express'
 import Graduate from '../models/graduate.model.js';
 
 const router = express.Router();
-// router.route(`/`)
-//     .get(async (req, res) => {
-
-//         const graduateInfo = Graduate.find((error, Graduate) => {
-//             if (error) {
-//                 console.log(error);
-//             }
-//             error ? res.status(404).send(`Not found`) : res.json(Graduate)
-//         });
-//         // res.send(`Success`)
-// })
 
 
 router.route(`/`)
@@ -30,6 +19,19 @@ router.route("/:uuid")
             }
             Graduate ? res.json(Graduate) : res.status(404).send(`Not found`);
         });
+    })
+    .put( async (req, res) => {
+
+        console.log(req.body);
+
+        Graduate.findOneAndUpdate( 
+            { uuid: req.params.uuid }, 
+            req.body, 
+            (error, doc) => {
+                if (error) console.log(error)
+                
+                res.status(201).send();
+            });
     });
 
 

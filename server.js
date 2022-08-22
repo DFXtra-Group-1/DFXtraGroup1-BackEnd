@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
-// dotenv.config({ path: `/Users/shafiulmirza/Documents/digitalfutures/challenges/DFXtra/DFXtraGroup1-BackEnd/src/.env.test` });
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 
