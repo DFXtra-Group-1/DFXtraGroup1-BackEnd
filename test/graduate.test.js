@@ -145,6 +145,42 @@ describe(`Tests`, () => {
         
     });
 
+
+    // check out https://stackoverflow.com/questions/46618860/mongoose-partial-update-of-an-object
+    it('Test 7 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
+        const getRes = await chai.request(server)
+            .put('/graduate/2/degrees')
+            .send(
+                {
+                    university: 'MIT',
+                    degreeSubject: 'Physics',
+                    degreeLevel: "Bachelor's",
+                    grade: '1:1',
+                    fromDate: '2011',
+                    description: 'A physics degree',
+                    _id: '6303b9f3eb5681b1a15ebb8b'
+                }
+            )
+
+        //console.log("RES BODT" + getRes)
+        // PUT request checks
+
+        // GET request checks
+        expect(getRes.status).to.be.eql(200)
+        expect(getRes.body.degrees[0]._id).to.be.eql("6303b9f3eb5681b1a15ebb8b")
+        expect(getRes.body.degrees[0].university).to.be.eql("MIT")
+        expect(getRes.body.degrees[0].degreeSubject).to.be.eql("Physics")
+        expect(getRes.body.degrees[0].degreeLevel).to.be.eql("Bachelor's")
+        expect(getRes.body.degrees[0].grade).to.be.eql("1:1")
+        expect(getRes.body.degrees[0].fromDate).to.be.eql("2011")
+        expect(getRes.body.degrees[0].toDate).to.be.eql("2015")
+        expect(getRes.body.degrees[0].weight).to.be.eql("XL")
+        expect(getRes.body.degrees[0].priority).to.be.eql("9")
+        expect(getRes.body.degrees[0].description).to.be.eql("A physics degree")
+        
+        
+    });
+
     
 })
 
