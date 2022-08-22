@@ -76,7 +76,7 @@ describe(`Tests`, () => {
             .put('/graduate/1')
             .send(
                 {   
-                    name: "Davina",
+                    firstName: "Davina",
                     gitHub: "davidWannsinnGithubEdited"
                 }
             )
@@ -90,7 +90,7 @@ describe(`Tests`, () => {
         expect(putRes).to.have.status(201);
 
         // GET request checks
-        expect(getRes.body.name).to.be.eql("Davina")
+        expect(getRes.body.firstName).to.be.eql("Davina")
         expect(getRes.body.gitHub).to.be.eql("davidWannsinnGithubEdited");
 
     });
