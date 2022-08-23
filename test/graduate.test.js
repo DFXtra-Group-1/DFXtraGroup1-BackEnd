@@ -193,20 +193,20 @@ describe(`Tests`, () => {
                 toDate: '2018',
                 weight: 'XL',
                 priority: '8',
-                description: 'A quantum physics degree',
+                description: 'A quantum physics degree'
             })
 
         // POST request checks
-        expect(getRes.status).to.be.eql(201)
-        expect(getRes.body.degrees[0].university).to.be.eql("UCL")
-        expect(getRes.body.degrees[0].degreeSubject).to.be.eql("Quantum Physics")
-        expect(getRes.body.degrees[0].degreeLevel).to.be.eql("Master's")
-        expect(getRes.body.degrees[0].grade).to.be.eql("1:1")
-        expect(getRes.body.degrees[0].fromDate).to.be.eql("2016")
-        expect(getRes.body.degrees[0].toDate).to.be.eql("2018")
-        expect(getRes.body.degrees[0].weight).to.be.eql("XL")
-        expect(getRes.body.degrees[0].priority).to.be.eql("8")
-        expect(getRes.body.degrees[0].description).to.be.eql("A quantum physics degree")
+        expect(postRes.status).to.be.eql(201)
+        expect(postRes.body.degrees[0].university).to.be.eql("UCL")
+        expect(postRes.body.degrees[0].degreeSubject).to.be.eql("Quantum Physics")
+        expect(postRes.body.degrees[0].degreeLevel).to.be.eql("Master's")
+        expect(postRes.body.degrees[0].grade).to.be.eql("1:1")
+        expect(postRes.body.degrees[0].fromDate).to.be.eql("2016")
+        expect(postRes.body.degrees[0].toDate).to.be.eql("2018")
+        expect(postRes.body.degrees[0].weight).to.be.eql("XL")
+        expect(postRes.body.degrees[0].priority).to.be.eql("8")
+        expect(postRes.body.degrees[0].description).to.be.eql("A quantum physics degree")
     })
 
 })

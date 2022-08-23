@@ -41,7 +41,6 @@ router.route("/:uuid/degrees")
                 console.log(error);
             }
             else {
-                // console.log(graduate.degrees)
                 graduate.degrees.forEach(degree => {
                     if (degree._id == req.body._id) {
                         res.status(200).send(degree);
@@ -53,14 +52,11 @@ router.route("/:uuid/degrees")
         });
     })
     .put(async (req, res) => {
-
         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
-
             if (error) {
                 console.log(error);
             }
             else {
-
                 for (let i = 0; i < graduate.degrees.length; i++) {
 
                     if (graduate.degrees[i]._id == req.body._id) {
@@ -81,6 +77,7 @@ router.route("/:uuid/degrees")
 
     })
     .post(async (res, req) => {
+        console.log(req.body);
         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
 
             if (error) {
@@ -95,7 +92,8 @@ router.route("/:uuid/degrees")
                     }
                     res.status(201).send(graduate);
                 })
-            })
+            }
+        })
     });
 
 
