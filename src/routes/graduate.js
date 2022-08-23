@@ -32,66 +32,70 @@ router.route("/:uuid")
             });
     })
 
-router.route("/:uuid/degrees")
-    .get(async (req, res) => {
+// router.route("/:uuid/degrees")
+//     .get(async (req, res) => {
 
-        Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
+//         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
 
-            if (error) {
-                console.log(error);
-            }
-            else {
-                graduate.degrees.forEach(degree => {
-                    if (degree._id == req.body._id) {
-                        res.status(200).send(degree);
-                    }
-                });
+//             if (error) {
+//                 console.log(error);
+//             }
+//             else {
+//                 graduate.degrees.forEach(degree => {
+//                     if (degree._id == req.body._id) {
+//                         res.status(200).send(degree);
+//                     }
+//                 });
 
-                res.status(404).send();
-            }
-        });
-    })
-    .put(async (req, res) => {
-        Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                for (let i = 0; i < graduate.degrees.length; i++) {
+//                 res.status(404).send();
+//             }
+//         });
+//     })
+//     .put(async (req, res) => {
+//         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
+//             if (error) {
+//                 console.log(error);
+//             }
+//             else {
+//                 for (let i = 0; i < graduate.degrees.length; i++) {
 
-                    if (graduate.degrees[i]._id == req.body._id) {
+//                     if (graduate.degrees[i]._id == req.body._id) {
 
-                        graduate.degrees[i] = req.body;
+//                         graduate.degrees[i] = req.body;
 
-                        graduate.save((saveError, saveRes) => {
-                            if (saveError) {
-                                res.status(400).send("saveError.message")
-                            }
-                            res.status(200).send(graduate);
-                        })
+//                         graduate.save((saveError, saveRes) => {
+//                             if (saveError) {
+//                                 res.status(400).send("saveError.message")
+//                             }
+//                             res.status(200).send(graduate);
+//                         })
 
-                    }
-                }
-            }
-        });
-    })
-    .post(async (req, res) => {
-        //console.log(req);
-        Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                graduate.save((saveError, saveRes) => {
-                    if (saveError) {
-                        res.status(400).send("saveError.message")
-                    }
-                    res.status(201).send(graduate);
-                })
-            }
-        })
-    });
+//                     }
+//                 }
+//             }
+//         });
+//     })
 
+
+
+// router.route(`/:uuid/:key`)
+//     .post(async (req, res) => {
+//         let key1 = req.params.key
+//         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
+//             if (error) {
+//                 console.log(error);
+//             }
+//             else {
+//                 graduate[req.params.key].push(req.body);
+//                 graduate.save((saveError, saveRes) => {
+//                     if (saveError) {
+//                         res.status(400).send("saveError.message")
+//                     }
+//                     res.status(201).send(graduate);
+//                 })
+//             }
+//         })
+//     });
 
 
 
