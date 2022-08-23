@@ -76,7 +76,7 @@ router.route("/:uuid/degrees")
         });
 
     })
-    .post(async (res, req) => {
+    .post(async (req, res) => {
         console.log(req.body);
         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
 

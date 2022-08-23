@@ -184,29 +184,32 @@ describe(`Tests`, () => {
     it('test 8 - POST/ should add a degree to the degrees array', async () => {
         const postRes = await chai.request(server)
             .post('/graduate/2/degrees')
-            .send({
-                university: 'UCL',
-                degreeSubject: 'Quantum Physics',
-                degreeLevel: "Master's",
-                grade: '1:1',
-                fromDate: '2016',
-                toDate: '2018',
-                weight: 'XL',
-                priority: '8',
-                description: 'A quantum physics degree'
-            })
+            .send(
+                {
+                    university: 'UCL',
+                    degreeSubject: 'Quantum Physics',
+                    degreeLevel: "Master's",
+                    grade: '1:1',
+                    fromDate: '2016',
+                    toDate: '2018',
+                    weight: 'XL',
+                    priority: '8',
+                    description: 'A quantum physics degree'
+                }
+            )
 
         // POST request checks
         expect(postRes.status).to.be.eql(201)
-        expect(postRes.body.degrees[0].university).to.be.eql("UCL")
-        expect(postRes.body.degrees[0].degreeSubject).to.be.eql("Quantum Physics")
-        expect(postRes.body.degrees[0].degreeLevel).to.be.eql("Master's")
-        expect(postRes.body.degrees[0].grade).to.be.eql("1:1")
-        expect(postRes.body.degrees[0].fromDate).to.be.eql("2016")
-        expect(postRes.body.degrees[0].toDate).to.be.eql("2018")
-        expect(postRes.body.degrees[0].weight).to.be.eql("XL")
-        expect(postRes.body.degrees[0].priority).to.be.eql("8")
-        expect(postRes.body.degrees[0].description).to.be.eql("A quantum physics degree")
+        expect(postRes.body.degrees.length).to.be.eql(2);
+        expect(postRes.body.degrees[1].university).to.be.eql("UCL")
+        expect(postRes.body.degrees[1].degreeSubject).to.be.eql("Quantum Physics")
+        expect(postRes.body.degrees[1].degreeLevel).to.be.eql("Master's")
+        expect(postRes.body.degrees[1].grade).to.be.eql("1:1")
+        expect(postRes.body.degrees[1].fromDate).to.be.eql("2016")
+        expect(postRes.body.degrees[1].toDate).to.be.eql("2018")
+        expect(postRes.body.degrees[1].weight).to.be.eql("XL")
+        expect(postRes.body.degrees[1].priority).to.be.eql("8")
+        expect(postRes.body.degrees[1].description).to.be.eql("A quantum physics degree")
     })
 
 })
