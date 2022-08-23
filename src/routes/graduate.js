@@ -76,18 +76,19 @@ router.route("/:uuid/degrees")
         });
     })
     .post(async (req, res) => {
-
+        console.log(req.body);
         Graduate.where({ uuid: req.params.uuid }).findOne((error, graduate) => {
+
             if (error) {
                 console.log(error);
             }
             else {
+                graduate.degrees.push(req.body);
+
                 graduate.save((saveError, saveRes) => {
                     if (saveError) {
                         res.status(400).send("saveError.message")
                     }
-
-                    console.log(graduate);
                     res.status(201).send(graduate);
                 })
             }
