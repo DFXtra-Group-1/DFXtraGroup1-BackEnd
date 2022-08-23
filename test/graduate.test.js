@@ -71,7 +71,156 @@ describe(`Tests`, () => {
 
     });
 
-    it('Test 4 - PUT/ should update multiple fields with new data', async () => {
+    it('Test 4 - should push new degree to degrees array', async () => {
+        const putRes = await chai.request(server)
+            .put('/graduate/1')
+            .send(
+                {
+                    uuid: 1,
+                    _id: "60f532903ded77001064ae90",
+                    available: true,
+                    firstName: "David",
+                    lastName: "Wannsinn",
+                    dateOfBirth: 609356000,
+                    gender: "male",
+                    nationality: "American",
+                    personality: "INTJ",
+                    phone: 447784698568,
+                    linkedIn: "www.linkedin.com/in/david-wannsinn",
+                    gitHub: "DavidWannSinn",
+                    personalEmail: "davidwann@gmail.com",
+                    digitalFuturesEmail: "davesinnwann@digitalfutures.com",
+                    degrees: [
+                        {
+                            university: "Plymouth",
+                            degreeSubject: "Computer Science",
+                            degreeLevel: "Masters",
+                            grade: "2:2",
+                            fromDate: 2004,
+                            toDate: 2008,
+                            weight: "XL",
+                            priority: 9,
+                            description: "A computer science degree"
+                        },
+                        {
+                            university: 'UCL',
+                            degreeSubject: 'Quantum Physics',
+                            degreeLevel: "Master's",
+                            grade: '1:1',
+                            fromDate: '2016',
+                            toDate: '2018',
+                            weight: 'XL',
+                            priority: '8',
+                            description: 'A quantum physics degree'
+                        }
+                    ],
+                    schoolQualifications: [
+                        {
+                            school: "Joyful Academy",
+                            examType: "A level",
+                            subject: "Maths",
+                            grade: "A*",
+                            year: 2003,
+                            weight: "L",
+                            priority: 8,
+                            description: "An A level in history"
+                        },
+                        {
+                            school: "Joyful Academy",
+                            examType: "A level",
+                            subject: "Computer Science",
+                            grade: "A",
+                            year: 2003,
+                            weight: "L",
+                            priority: 6,
+                            description: "An A level in geography"
+                        },
+                        {
+                            school: "Joyful Academy",
+                            examType: "A level",
+                            subject: "English Literature",
+                            grade: "B",
+                            year: 2003,
+                            weight: "L",
+                            priority: 7,
+                            description: "An A level in English literature"
+                        }
+                    ],
+                    workExperience: [
+                        {
+                            type: "full-time",
+                            employer: "Costa",
+                            position: "barista",
+                            fromDate: 2008,
+                            toDate: 2009,
+                            weight: "L",
+                            priority: 8,
+                            description: "Honing initiative to deliver high-quality team-engagement solutions"
+                        }
+                    ],
+                    certificatesAndAwards: [
+                        {
+                            type: "Cert",
+                            issuer: "Oracle",
+                            award: "Oracle Java SE",
+                            grade: "Pass",
+                            year: 2020,
+                            weight: "L",
+                            priority: 8,
+                            description: "Java certified"
+                        }
+                    ],
+                    portfolio: [
+                        {
+                            title: "How to drive",
+                            URL: "www.google.com",
+                            year: "2009",
+                            weight: "L",
+                            priority: 8,
+                            description: "Driving tutorial"
+                        }
+                    ],
+                    personalSummary: "Magic and science fuse together to create... ME!",
+                    cohort: "ds-2121-a",
+                    learningPath: "Data Science",
+                    trainer: "Daniel Ferrera",
+                    trainingFinishDate: 1610643600
+                }
+            )
+
+        const getRes = await chai.request(server)
+            .get('/graduate/1')
+            .send()
+        // console.log(res.body);
+
+        expect(putRes).to.have.status(201);
+        expect(getRes.body.degrees.length).to.be.eql(2);
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///////////******************************************* */
+
+    xit('Test 4 - PUT/ should update multiple fields with new data', async () => {
         const putRes = await chai.request(server)
             .put('/graduate/1')
             .send(
@@ -97,7 +246,7 @@ describe(`Tests`, () => {
 
 
     // ---------------------------------------
-    it('Test 5 - GET/ should find specific subdocument', async () => {
+    xit('Test 5 - GET/ should find specific subdocument', async () => {
         const getRes = await chai.request(server)
             .get('/graduate/2/degrees')
             .send(
@@ -116,7 +265,7 @@ describe(`Tests`, () => {
 
 
 
-    it('Test 6 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
+    xit('Test 6 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
         const getRes = await chai.request(server)
             .put('/graduate/2/degrees')
             .send(
@@ -181,7 +330,7 @@ describe(`Tests`, () => {
 
     });
 
-    it('test 8 - POST/ should add a degree to the degrees array', async () => {
+    xit('test 8 - POST/ should add a degree to the degrees array', async () => {
         const postRes = await chai.request(server)
             .post('/graduate/2/degrees')
             .send(
@@ -212,8 +361,35 @@ describe(`Tests`, () => {
         expect(postRes.body.degrees[1].description).to.be.eql("A quantum physics degree")
     })
 
-})
+    xit('test 9 - POST/ should add a degree to the degrees array', async () => {
+        const postRes = await chai.request(server)
+            .post('/graduate/2/degrees')
+            .send({
+                university: 'UCL',
+                degreeSubject: 'Quantum Physics',
+                degreeLevel: "Master's",
+                grade: '1:1',
+                fromDate: '2016',
+                toDate: '2018',
+                weight: 'XL',
+                priority: '8',
+                description: 'A quantum physics degree'
+            })
 
+        // POST request checks
+        expect(postRes.status).to.be.eql(201)
+        expect(postRes.body.degrees[1].university).to.be.eql("UCL")
+        expect(postRes.body.degrees[1].degreeSubject).to.be.eql("Quantum Physics")
+        expect(postRes.body.degrees[1].degreeLevel).to.be.eql("Master's")
+        expect(postRes.body.degrees[1].grade).to.be.eql("1:1")
+        expect(postRes.body.degrees[1].fromDate).to.be.eql("2016")
+        expect(postRes.body.degrees[1].toDate).to.be.eql("2018")
+        expect(postRes.body.degrees[1].weight).to.be.eql("XL")
+        expect(postRes.body.degrees[1].priority).to.be.eql("8")
+        expect(postRes.body.degrees[1].description).to.be.eql("A quantum physics degree")
+    })
+
+})
 
 
 
