@@ -86,6 +86,8 @@ router.route("/:uuid/degrees")
                     if (saveError) {
                         res.status(400).send("saveError.message")
                     }
+
+                    console.log(graduate);
                     res.status(201).send(graduate);
                 })
             }
