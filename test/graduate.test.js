@@ -39,7 +39,7 @@ describe(`Tests`, () => {
         expect(res.body).to.be.an('array');
     });
 
-   it('Test 2 - should get one graduate from database', async () => {
+    it('Test 2 - should get one graduate from database', async () => {
         const res = await chai.request(server)
             .get('/graduate/1')
             .send()
@@ -75,7 +75,7 @@ describe(`Tests`, () => {
         const putRes = await chai.request(server)
             .put('/graduate/1')
             .send(
-                {   
+                {
                     firstName: "Davina",
                     gitHub: "davidWannsinnGithubEdited"
                 }
@@ -85,7 +85,7 @@ describe(`Tests`, () => {
             .get('/graduate/1')
             .send()
         // console.log(res.body);
-        
+
         // PUT request checks
         expect(putRes).to.have.status(201);
 
@@ -96,7 +96,7 @@ describe(`Tests`, () => {
     });
 
 
-// ---------------------------------------
+    // ---------------------------------------
     it('Test 5 - GET/ should find specific subdocument', async () => {
         const getRes = await chai.request(server)
             .get('/graduate/2/degrees')
@@ -141,13 +141,13 @@ describe(`Tests`, () => {
         expect(getRes.status).to.be.eql(200)
         expect(getRes.body.degrees[0]._id).to.be.eql("6303b9f3eb5681b1a15ebb8b")
         expect(getRes.body.degrees[0].university).to.be.eql("MIT")
-        
-        
+
+
     });
 
 
     // check out https://stackoverflow.com/questions/46618860/mongoose-partial-update-of-an-object
-    it('Test 7 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
+    xit('Test 7 - PUT/ should update one field in subdocs (degrees) with new data', async () => {
         const getRes = await chai.request(server)
             .put('/graduate/2/degrees')
             .send(
@@ -177,11 +177,38 @@ describe(`Tests`, () => {
         expect(getRes.body.degrees[0].weight).to.be.eql("XL")
         expect(getRes.body.degrees[0].priority).to.be.eql("9")
         expect(getRes.body.degrees[0].description).to.be.eql("A physics degree")
-        
-        
+
+
     });
 
-    
+    it('test 8 - POST/ should add a degree to the degrees array', async () => {
+        const postRes = await chai.request(server)
+            .post('/graduate/2/degrees')
+            .send({
+                university: 'UCL',
+                degreeSubject: 'Quantum Physics',
+                degreeLevel: "Master's",
+                grade: '1:1',
+                fromDate: '2016',
+                toDate: '2018',
+                weight: 'XL',
+                priority: '8',
+                description: 'A quantum physics degree',
+            })
+
+        // POST request checks
+        expect(getRes.status).to.be.eql(201)
+        expect(getRes.body.degrees[0].university).to.be.eql("UCL")
+        expect(getRes.body.degrees[0].degreeSubject).to.be.eql("Quantum Physics")
+        expect(getRes.body.degrees[0].degreeLevel).to.be.eql("Master's")
+        expect(getRes.body.degrees[0].grade).to.be.eql("1:1")
+        expect(getRes.body.degrees[0].fromDate).to.be.eql("2016")
+        expect(getRes.body.degrees[0].toDate).to.be.eql("2018")
+        expect(getRes.body.degrees[0].weight).to.be.eql("XL")
+        expect(getRes.body.degrees[0].priority).to.be.eql("8")
+        expect(getRes.body.degrees[0].description).to.be.eql("A quantum physics degree")
+    })
+
 })
 
 
