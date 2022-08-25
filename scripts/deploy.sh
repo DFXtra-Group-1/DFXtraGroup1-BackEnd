@@ -24,6 +24,10 @@ ssh -t ec2-user@3.209.113.207 <<EOF
 
   sudo amazon-linux-extras install nginx1 -y
 
+  sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
+
+  sudo cp ./scripts/nginx.conf /etc/nginx/
+
   sudo nginx -t
 
   sudo chkconfig nginx on
@@ -33,6 +37,3 @@ ssh -t ec2-user@3.209.113.207 <<EOF
   exit
 
 EOF
-
-
-
