@@ -2,7 +2,7 @@
 
 ssh -t -t ec2-user@3.209.113.207 <<EOF 
 
-  cd ~/DFXtra-Group1-BackEnd
+  cd ~/DFXtraGroup1-BackEnd
 
   git pull origin main
 
