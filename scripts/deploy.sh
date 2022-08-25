@@ -2,7 +2,7 @@
 
 ssh -t ec2-user@3.209.113.207 <<EOF 
 
-  cd ~/<YOUR_REPO_FOLDER>
+  cd ~/deployment/DFXtra-Group1-BackEnd
 
   git pull origin main
 
