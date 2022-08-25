@@ -35,3 +35,4 @@ ssh -t ec2-user@3.209.113.207 <<EOF
   exit
 
 EOF
+
