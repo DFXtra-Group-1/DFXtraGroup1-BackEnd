@@ -2,7 +2,7 @@
 
 ssh -t ec2-user@3.209.113.207 <<EOF 
 
-  cd ~/deployment/DFXtra-Group1-BackEnd
+  cd ~/deployment/DFXtraGroup1-BackEnd
 
   git pull origin main
 
@@ -23,6 +23,10 @@ ssh -t ec2-user@3.209.113.207 <<EOF
   sudo yum install nginx -y
 
   sudo amazon-linux-extras install nginx1 -y
+
+  sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
+
+  sudo cp scripts/deploy.sh /etc/nginx/nginx.conf
 
   sudo nginx -t
 
