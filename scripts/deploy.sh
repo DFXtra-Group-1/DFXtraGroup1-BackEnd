@@ -1,8 +1,8 @@
 #!/bin/sh
 
-ssh -t ec2-user@3.209.113.207 <<EOF 
+ssh -t -t ec2-user@3.209.113.207 <<EOF 
 
-  cd ~/deployment/DFXtraGroup1-BackEnd
+  cd ~/DFXtraGroup1-BackEnd
 
   git pull origin main
 
@@ -26,7 +26,11 @@ ssh -t ec2-user@3.209.113.207 <<EOF
 
   sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 
+<<<<<<< HEAD
   sudo cp scripts/deploy.sh /etc/nginx/nginx.conf
+=======
+  sudo cp ./scripts/nginx.conf /etc/nginx/
+>>>>>>> merge
 
   sudo nginx -t
 
@@ -37,6 +41,3 @@ ssh -t ec2-user@3.209.113.207 <<EOF
   exit
 
 EOF
-
-
-
