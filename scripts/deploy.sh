@@ -2,11 +2,7 @@
 
 ssh -t -t ec2-user@3.209.113.207 <<EOF 
 
-<<<<<<< HEAD
   cd ~/DFXtraGroup1-BackEnd
-=======
-  cd ~/deployment/DFXtraGroup1-BackEnd
->>>>>>> 6165403 (changes)
 
   git pull origin main
 
