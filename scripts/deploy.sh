@@ -2,7 +2,11 @@
 
 ssh -t -t ec2-user@3.209.113.207 <<EOF 
 
+<<<<<<< HEAD
   cd ~/DFXtraGroup1-BackEnd
+=======
+  cd ~/deployment/DFXtraGroup1-BackEnd
+>>>>>>> 6165403 (changes)
 
   git pull origin main
 
@@ -26,7 +30,11 @@ ssh -t -t ec2-user@3.209.113.207 <<EOF
 
   sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 
+<<<<<<< HEAD
   sudo cp ./scripts/nginx.conf /etc/nginx/
+=======
+  sudo cp scripts/deploy.sh /etc/nginx/nginx.conf
+>>>>>>> 6165403 (changes)
 
   sudo nginx -t
 
