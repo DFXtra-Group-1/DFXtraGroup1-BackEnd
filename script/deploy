@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ssh -t -t ec2-user@3.209.113.207 <<EOF 
+#ssh -t -t ec2-user@3.209.113.207 <<EOF 
+ssh -t -t ec2-user@172.31.86.21 <<EOF 
 
   cd ~/DFXtraGroup1-BackEnd
 

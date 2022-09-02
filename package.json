@@ -9,7 +9,8 @@
     "testwin": "SET NODE_ENV=test&& mocha --timeout 10000 --exit",
     "start": "NODE_ENV=development pm2 start server.js -f",
     "startdev": "NODE_ENV=development nodemon server.js",
-    "start-win": "SET NODE_ENV=development&& nodemon server.js"
+    "start-win": "SET NODE_ENV=development&& nodemon server.js",
+    "start2": "NODE_ENV=development nodemon server.js"
   },
   "repository": {
     "type": "git",
