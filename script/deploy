@@ -27,7 +27,7 @@ ssh -t -t ec2-user@172.31.86.21 <<EOF
 
   sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 
-  sudo cp ./scripts/nginx.conf /etc/nginx/
+  sudo cp ./script/nginx.conf /etc/nginx/
 
   sudo nginx -t
 
